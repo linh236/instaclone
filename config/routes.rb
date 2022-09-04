@@ -7,6 +7,10 @@ Rails.application.routes.draw do
       end
     end
   end
+  resources :comments do 
+    post "likes", to: "likes#like_comment"
+    delete "likes", to: "likes#unlike_comment"
+  end
 
   devise_for :users
   root "site#index"

@@ -3,4 +3,14 @@
     <span class="comment-author"><%= comment.user.username %></span>
     <%= comment.body %>
   </div>
+  <div class="comment-like">
+    <%= turbo_frame_tag "like-#{comment.id}" do %>
+      <% if find_object_like(comment) %>
+        <%= link_to "Liked", comment_likes_path(comment), data: {turbo_method: :delete}, class: 'liked'%>
+      <% else %>
+        <%= link_to "Like", comment_likes_path(comment), data: {turbo_method: :post}, class: 'like'%>
+      <% end %>
+    <% end %>
+    <div class="edit">Edit</div>
+  </div>
 <% end%>
