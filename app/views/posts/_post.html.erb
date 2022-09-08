@@ -13,9 +13,9 @@
     <div class="like-container">
       <%= turbo_frame_tag "post-likes-#{post.id}" do %>
         <% if find_object_like(post).nil? %>
-          <%= button_to "", post_likes_path(post), class:"post-actions-like"%>
+          <%= button_to "", likes_path, params: {likeable_type: "Post", likeable_id: post.id}, class:"post-actions-like"%>
         <% else %>
-          <%= button_to "", post_likes_path(post), class: "post-actions-unlike", method: :delete %>
+          <%= button_to "", likes_path, class: "post-actions-unlike", method: :delete, params: {likeable_type: "Post", likeable_id: post.id} %>
         <% end %>
       <% end %>
       <div id="post-likes-count-<%=post.id%>"><%= pluralize(post.likes.count, "like") %></div>

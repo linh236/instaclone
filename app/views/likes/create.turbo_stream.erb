@@ -1,7 +1,11 @@
-<%= turbo_stream.update "post-likes-count-#{@post.id}" do %>
-  <%= pluralize(@post.likes.count, "like") %>
+<%= turbo_stream.update "post-likes-count-#{@likeable.id}" do %>
+  <%= pluralize(@likeable.likes.count, "like") %>
 <% end %>
 
-<%= turbo_stream.update "post-likes-#{@post.id}" do %>
-  <%= button_to "", post_likes_path(@post), class:"post-actions-unlike", method: :delete%>
+<%= turbo_stream.update "post-likes-#{@likeable.id}" do %>
+  <%= button_to "", likes_path, class: "post-actions-unlike", method: :delete, params: {likeable_type: "Post", likeable_id: @likeable.id} %>
+<% end %>
+
+<%= turbo_stream.update "like-#{@likeable.id}" do %>
+  <%= link_to "Liked", likes_path(likeable_type: "Comment", likeable_id: @likeable.id), data: {turbo_method: :delete}, class: 'liked'%>
 <% end %>
