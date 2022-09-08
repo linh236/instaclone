@@ -1,22 +1,32 @@
 <div class="post">
-  <div class="post-author">
-    <div class="avatar avatar-<%=rand(1..27)%>"></div>
-    <div><%= post.user.username %></div>
+  <div class="header-post">
+    <div class="post-author">
+      <div class="avatar avatar-<%=rand(1..27)%>"></div>
+      <div><%= post.user.username %></div>
+    </div>
+    <div><%= format_created_at(post.created_at) %></div>
   </div>
   <div class="post-body">
     <span><%= post.body %></span>
   </div>
   <div class="post-actions">
-    <%= turbo_frame_tag "post-likes" do %>
-      <%= button_to "", post_likes_path(post), class:"post-actions-like"%>
-    <% end %>
-    <div class="post-action-comments"><div id="post-comments-count"><%= pluralize(post.comments.count, "comment") %></div></div>
+    <div class="like-container">
+      <%= turbo_frame_tag "post-likes-#{post.id}" do %>
+        <% if find_object_like(post).nil? %>
+          <%= button_to "", likes_path, params: {likeable_type: "Post", likeable_id: post.id}, class:"post-actions-like"%>
+        <% else %>
+          <%= button_to "", likes_path, class: "post-actions-unlike", method: :delete, params: {likeable_type: "Post", likeable_id: post.id} %>
+        <% end %>
+      <% end %>
+      <div id="post-likes-count-<%=post.id%>"><%= pluralize(post.likes.count, "like") %></div>
+    </div>
+    <div class="post-action-comments"><div id="post-comments-count-<%=post.id%>"><%= pluralize(post.comments.count, "comment") %></div></div>
   </div>
   <div class="post-comments">
-    <div id="comment-form">
+    <div id="comment-form-<%=post.id%>">
       <%= render partial: "comments/form", locals: {post: post}%>
     </div>
-    <div id="post-comments-list">
+    <div class="comments-list" id="post-comments-list-<%=post.id%>">
       <%= render partial: "comments/list", locals: {post: post}%>
     </div>
   </div>

@@ -1,11 +1,22 @@
 class LikesController < ApplicationController
+  before_action :set_likeable, only: [:create, :destroy]
+
   def create 
-    @post = Post.find(params[:post_id])
-    current_user.like!(@post)
+    @likeable_save = Like.new(likeable: @likeable, user: current_user)
+    if @likeable_save.valid?
+      @likeable_save.save
+    else
+      render josn: {messages: @likeable_save.errors.full_messages, status: :unprocessable_entity }
+    end
   end
 
   def destroy
-    @post = current_user.posts.find_by(id: params[:post_id])
-    current_user.likes.where(post_id: @post.id).delete_all
+    Like.where(likeable: @likeable, user: current_user).delete_all
   end
+
+  private 
+
+    def set_likeable
+      @likeable = params[:likeable_type].constantize.find(params[:likeable_id])
+    end
 end
