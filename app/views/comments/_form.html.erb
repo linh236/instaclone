@@ -1,9 +1,9 @@
 <%= form_with model: Comment.new, url: post_comments_path(post), class: "comment-form" do |f| %>
   <%= f.text_field :body, class: "form-control", placeholder: "Enter comment ..."%>
   <%= f.file_field :attachment, id: "comment-document", class:"attachment attachment-photo d-none"%>
-  <label for="comment-document" class="upload-icon comment-document pointer">
+  <label for="comment-document" data-id="<%= post.id %>" class="upload-icon comment-document pointer">
     <%= image_tag "icons/paperclip-blue"%>
   </label>
   <%= f.submit "Post", class: "btn btn-primary" %>
 <% end %>
-<p class="filename-document mb-2"></p>
+<p class="filename-document-<%=post.id%> mb-2"></p>
