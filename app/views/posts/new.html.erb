@@ -1,6 +1,9 @@
 <%= turbo_frame_tag "post-form" do %>
-  <%= form_with model: @post do |f| %>
-    <%= f.text_field :body %>
-    <%= f.submit "Send" %>
-  <% end %>
+  <%#= form_with model: @post do |f| %>
+    <%#= f.text_field :body %>
+    <%#= f.submit "Send" %>
+  <%# end %>
+  <div id="post-form">
+    <%= render partial: "posts/form", locals: {post: @post} %>
+  </div> 
 <% end %>

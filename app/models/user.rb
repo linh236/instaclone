@@ -7,7 +7,7 @@ class User < ApplicationRecord
   has_many :posts
   has_many :likes, as: :likeable, dependent: :destroy
   has_many :comments
-
+  has_one :picture, as: :pictureable
   validates :username, presence: true
 
 end

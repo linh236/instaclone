@@ -2,6 +2,11 @@
   <div class="comment">
     <span class="comment-author"><%= comment.user.username %></span>
     <%= comment.body %>
+    <div>
+      <% comment.pictures.each do |image|%>
+        <%= image_tag(image.picture_uri, :size => "100x60") if image.picture_uri %>
+      <% end %>
+    </div>
   </div>
   <div class="comment-like">
     <%= turbo_frame_tag "like-#{comment.id}" do %>
