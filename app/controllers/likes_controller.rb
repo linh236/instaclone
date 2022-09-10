@@ -1,12 +1,13 @@
 class LikesController < ApplicationController
   before_action :set_likeable, only: [:create, :destroy]
+  before_action :user_login_required, only: [:create]
 
   def create 
     @likeable_save = Like.new(likeable: @likeable, user: current_user)
     if @likeable_save.valid?
       @likeable_save.save
     else
-      render josn: {messages: @likeable_save.errors.full_messages, status: :unprocessable_entity }
+      render_flash(:alert, full_messages(@likeable_save.errors.full_messages))
     end
   end
 

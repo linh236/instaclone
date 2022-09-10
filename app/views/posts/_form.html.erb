@@ -1,0 +1,45 @@
+<%= turbo_frame_tag "post-form" do %>
+  <%#= form_with model: Post.new do |f| %>
+    <%#= f.text_field :body %>
+    <%#= f.submit "Send" %>
+  <%# end %>
+  <div class="row">
+    <div class="col-md-12 mt-4 new-post">
+      <div class="row post-container col-md-8 offset-md-2 pt-2 pb-2 border rounded">
+        <div class="avatar-container">
+          <%= image_tag "avatars/01", class: "avatar" %>
+        </div>
+        <div class="form">
+          <%= form_with model: Post.new do |f| %>
+          <div>
+            <%= f.text_field :title, class: 'form-control', placeholder: 'Title ...' %>
+          </div>
+          <div class="mt-2">
+            <%= f.text_area :body, rows: '4', class: 'form-control', placeholder: 'Description ...'%>
+          </div>
+          <div>
+            <div class="mt-2 d-flex justify-content-between align-items-center">
+              <div class="d-flex align-items-center">
+                <%= f.file_field :attachment, id: "upload-photo", class:"attachment attachment-photo d-none"%>
+                <label for="upload-photo" class="upload-icon d-flex attachment-btn pointer align-items-center">
+                  <%= image_tag "icons/image-gallery-blue"%>
+                  <p>Photo</p>
+                </label>
+              </div>
+              <div class="d-flex align-items-center">
+                <%= f.file_field :attachment, id: "upload-document", class:"attachment attachment-photo d-none"%>
+                <label for="upload-document" class="upload-icon attachment-btn d-flex pointer align-items-center">
+                  <%= image_tag "icons/paperclip-blue"%>
+                  <p>Document</p>
+                </label>
+              </div>
+              <%= f.submit "Post", class: 'btn btn-primary' %>
+            </div>
+            <p class="filename"></p>
+          </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+<% end %>

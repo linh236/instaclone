@@ -72,3 +72,9 @@ group :test do
 end
 
 gem "devise", "~> 4.8"
+
+gem "bootstrap", "~> 5.2"
+
+gem "carrierwave", "~> 2.2"
+
+gem "ImageResize", "~> 0.0.5"

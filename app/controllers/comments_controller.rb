@@ -6,9 +6,11 @@ class CommentsController < ApplicationController
     comment = Comment.new(comment_params)
     comment.user = current_user
     comment.post = @post
-    if comment.save
+    if comment.valid?
+      comment.save
+      comment.pictures.create(picture_uri: upload_picture(params[:comment][:attachment])) if params[:comment][:attachment].present?
     else
-      render :new, status: :unprocessable_entity
+      render_flash(:alert, full_messages(comment.errors.full_messages))
     end
   end
 

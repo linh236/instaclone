@@ -1,0 +1,22 @@
+.new-post {
+  margin-bottom: 20px;
+  .post-container {
+    display: grid;
+    grid-template-columns: 60px 1fr;
+    grid-gap: 12px;
+    .avatar {
+      width: 60px;
+      height: 60px;
+    }
+    .form {
+      .upload-icon { 
+        width: 40px;
+        cursor: pointer;
+      }
+      .filename {
+        font-size: 10px;
+        font-weight: normal;
+      }
+    }
+  }
+}

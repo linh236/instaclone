@@ -12,8 +12,11 @@
 
   <body>
     <%= render "layouts/shared/nav" %>
-    <p class="notice"><%= notice %></p>
-    <p class="alert"><%= alert %></p>
-    <%= yield %>
+    <%= render 'shared/notices' %>
+    
+    <div class="container position-relative">
+      <div id="toasts" style="position: absolute; top: 0; right: 0;"></div>
+      <%= yield %>
+    </div>
   </body>
 </html>
