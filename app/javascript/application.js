@@ -16,9 +16,10 @@ $(".attachment-btn").click(function() {
 
 $(".comment-document").click(function() {
   let labelId = $(this).attr("for") ;
+  let id = $(this).data("id");
   $(`#${labelId}`).change(function() {
     let filename = $(this)[0].files;
-    $(".filename-document").html(filename[0].name);
+    $(`.filename-document-${id}`).html(filename[0].name);
   })
 })
 
