@@ -84,3 +84,5 @@ gem "bootstrap", "~> 5.2"
 gem "carrierwave", "~> 2.2"
 
 gem "ImageResize", "~> 0.0.5"
+
+gem "json", "~> 2.6"

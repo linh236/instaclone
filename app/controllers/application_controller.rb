@@ -20,10 +20,15 @@ class ApplicationController < ActionController::Base
     end
 
     def upload_picture uploaded_file
+      picture_params = {}
       File.open(Rails.root.join('public', 'uploads', uploaded_file.original_filename), 'wb') do |file|
         file.write(uploaded_file.read)
       end
-      "/uploads/#{uploaded_file.original_filename}"
+      picture_params = {
+        path: "/uploads/#{uploaded_file.original_filename}",
+        type: uploaded_file.content_type,
+        name: uploaded_file.original_filename
+      }
     end
 
     def configure_permitted_params
