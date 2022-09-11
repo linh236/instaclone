@@ -201,6 +201,10 @@ p {
   font-weight: bold;
 }
 
+.comment-image { 
+  object-fit: contain;
+}
+
 button {
   border: none;
   cursor: pointer;

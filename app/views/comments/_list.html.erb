@@ -4,7 +4,8 @@
     <%= comment.body %>
     <div>
       <% comment.pictures.each do |image|%>
-        <%= image_tag(image.picture_uri, :size => "100x60") if image.picture_uri %>
+        <%= image_tag(image.picture_uri, :size => "100x60", class: "comment-image") if image.picture_uri && is_image(image.picture_type) %>
+        <%= link_to(image.picture_name, image.picture_uri, target: :blank, class: "open-document") if image.picture_uri && !is_image(image.picture_type) %>
       <% end %>
     </div>
   </div>

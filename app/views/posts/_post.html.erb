@@ -13,7 +13,8 @@
         <p><%= post.body %></p>
         <div class="text-center mt-3">
           <% post.pictures.each do |image|%>
-            <%= image_tag(image.picture_uri, :size => "360x200") if image.picture_uri %>
+            <%= image_tag(image.picture_uri, :size => "360x200") if image.picture_uri && is_image(image.picture_type) %>
+            <%= link_to(image.picture_name, image.picture_uri, target: :blank, class: "open-document") if image.picture_uri && !is_image(image.picture_type) %>
           <% end %>
         </div>
       </div>

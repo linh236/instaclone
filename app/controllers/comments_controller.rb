@@ -8,7 +8,10 @@ class CommentsController < ApplicationController
     comment.post = @post
     if comment.valid?
       comment.save
-      comment.pictures.create(picture_uri: upload_picture(params[:comment][:attachment])) if params[:comment][:attachment].present?
+      if params[:comment][:attachment].present?
+        file = upload_picture(params[:comment][:attachment])
+        comment.pictures.create(picture_uri: file[:path], picture_type: file[:type], picture_name: file[:name]) 
+      end
     else
       render_flash(:alert, full_messages(comment.errors.full_messages))
     end
