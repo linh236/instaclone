@@ -5,7 +5,6 @@
         <div class="post-author">
           <div class="avatar avatar-<%=rand(1..27)%>"></div>
           <div><%= post.user.username %></div>
-          <%= link_to "Sign Out", post_path(post), data: { "turbo-method": :delete } %>
         </div>
         <div class="action-post">
           <% if current_user == post.user %>
