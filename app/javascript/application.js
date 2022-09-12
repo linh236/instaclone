@@ -3,7 +3,9 @@ import "@hotwired/turbo-rails"
 import "controllers"
 import "bootstrap"
 import jQuery from "jquery";
+import * as bootstrap from "bootstrap"
 
+window.bootstrap = bootstrap
 window.$ = window.jQuery = jQuery;
 
 $(".attachment-btn").click(function() {

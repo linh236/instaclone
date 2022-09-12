@@ -98,6 +98,28 @@ p {
   align-items: center;
 }
 
+.action-post { 
+  .dot-post { 
+    position: relative;
+    .edit-post { 
+      position: absolute;
+      top: 21px;
+      right: -6px;
+      background: #fff;
+      ul {
+        list-style-type: none;
+        border-radius: 7px;
+        .delete {
+          a {
+            text-decoration: none;
+            color: #333;
+          }
+        }
+      }
+    }
+  }
+}
+
 .avatar {
   width: 24px;
   height: 24px;

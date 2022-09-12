@@ -2,7 +2,7 @@
   <%#= link_to "New Post", new_post_path %>
 <%# end %>
 <div id="post-form">
-  <%= render partial: "posts/form", locals: {post: @post} %>
+  <%= render partial: "posts/form", locals: {post: @post, isModal: false} %>
 </div> 
 <div id="posts">
   <%= render @posts %>
