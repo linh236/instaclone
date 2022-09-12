@@ -6,4 +6,4 @@
   <%= render "posts/form"%>
 <% end %>
 
-<%= turbo_stream.append "flash", partial: "shared/flash", locals: { msg_type: :notice, message: "Created a new post!" } %>
+<%= turbo_stream.update "flash", partial: "shared/flash", locals: { msg_type: :notice, message: "Created a new post!" } %>
