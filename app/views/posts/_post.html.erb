@@ -1,12 +1,23 @@
-<div class="row">
-  <div class=" col-md-12">
+<div class="row" id="post-<%=post.id%>">
+  <div class="col-md-12">
     <div class="post col-md-8 offset-md-2">
       <div class="header-post">
         <div class="post-author">
           <div class="avatar avatar-<%=rand(1..27)%>"></div>
           <div><%= post.user.username %></div>
         </div>
-        <div><%= format_created_at(post.created_at) %></div>
+        <div class="action-post">
+          <% if current_user == post.user %>
+            <div class="dot-post" data-controller="post">
+              <p data-action="click->post#showEdit" data-post-id-param ="<%=post.id%>"
+                data-post-show-param="false" data-post-target="show" data-post-url-param="<%=post_path(post)%>"
+                class="text-end pointer">&#9675; &#9675; &#9675;</p>
+              <span class="edit-post" data-post-target="output">
+              </span>
+            </div>
+          <% end %>
+          <%= format_created_at(post.created_at) %>
+        </div>
       </div>
       <div class="post-body">
         <h3><%= post.title %></h3>

@@ -1,0 +1,5 @@
+<%= turbo_stream.replace "remote_modal" do %>
+  <%= render partial: "posts/form_modal", locals: { post: @post } %>
+<% end %>
+
+<%= turbo_stream.append "flash", partial: "shared/flash", locals: { msg_type: :notice, message: "This post is updated!" } %>

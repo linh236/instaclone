@@ -5,12 +5,12 @@
   <%# end %>
   <div class="row">
     <div class="col-md-12 mt-4 new-post">
-      <div class="row post-container col-md-8 offset-md-2 pt-2 pb-2 border rounded">
+      <div class="row post-container <%= isModal.present? ? 'col-md-12' : 'col-md-8 offset-md-2'%> pt-2 pb-2 border rounded">
         <div class="avatar-container">
           <%= image_tag "avatars/01", class: "avatar" %>
         </div>
         <div class="form">
-          <%= form_with model: Post.new do |f| %>
+          <%= form_with model: @post do |f| %>
           <div>
             <%= f.text_field :title, class: 'form-control', placeholder: 'Title ...' %>
           </div>
@@ -33,7 +33,7 @@
                   <p>Document</p>
                 </label>
               </div>
-              <%= f.submit "Post", class: 'btn btn-primary' %>
+              <%= f.submit "Post", class: 'btn btn-primary', "data-bs-dismiss": "modal" %>
             </div>
             <p class="filename"></p>
           </div>
