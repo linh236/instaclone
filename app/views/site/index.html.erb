@@ -1,9 +1,15 @@
 <%#= turbo_frame_tag "post-form" do %>
   <%#= link_to "New Post", new_post_path %>
 <%# end %>
-<div id="post-form">
-  <%= render partial: "posts/form", locals: {post: @post, isModal: false} %>
-</div> 
+<div class="row">
+    <div class="col-md-12 mt-4 new-post">
+      <div class="row col-md-8 offset-md-2 pt-2 pb-2 border rounded">
+        <div id="post-form">
+          <%= render partial: "posts/form", locals: {post: @post} %>
+        </div> 
+      </div>
+    </div>
+  </div>
 <div id="posts">
   <%= render @posts %>
 </div>
