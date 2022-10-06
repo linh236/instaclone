@@ -1,0 +1,16 @@
+.list-container {
+  min-height: auto;
+  max-height: 900px;
+  overflow: hidden;
+  .music-item {
+    &.active {
+      border: 1px solid blue;
+    }
+    .auth {
+      font-size: 14px;
+    }
+    .created_at {
+      font-size: 12px;
+    }
+  }
+}

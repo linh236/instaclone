@@ -11,4 +11,8 @@ module ApplicationHelper
   def is_image type
     type.include?("image") 
   end
+
+  def format_datetime datetime
+    datetime.strftime("%Y-%m-%d")
+  end
 end

@@ -9,5 +9,5 @@ class User < ApplicationRecord
   has_many :comments
   has_one :picture, as: :pictureable
   validates :username, presence: true
-
+  has_many :musics
 end

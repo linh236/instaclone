@@ -9,7 +9,10 @@ Rails.application.routes.draw do
     end
   end 
   
-
+  resources :musics, only: [:index, :new, :create, :edit, :update, :destroy, :show]
+  
+  get 'powerpoint/create'
+  
   devise_for :users
   root "site#index"
 end

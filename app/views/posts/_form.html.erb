@@ -33,7 +33,7 @@
                   <p>Document</p>
                 </label>
               </div>
-              <%= f.submit "Post", class: 'btn btn-primary', "data-bs-dismiss": "modal" %>
+              <%= f.submit "Post", class: 'btn btn-primary', "data-bs-dismiss": "#{@post.id.present? ? 'modal': ''}" %>
             </div>
             <p class="filename"></p>
           </div>

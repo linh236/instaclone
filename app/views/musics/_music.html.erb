@@ -1,0 +1,10 @@
+<div class="music-item pointer card mt-3 mb-3" data-controller="music" data-action="click->music#detail" data-music-url-param="<%=music_path(music)%>" id="music_<%= music.id %>">
+  <div class="card-body">
+    <h5 class="card-title"><%= music.name %></h5>
+    <p class="card-text auth">Author: <%= music.auth %></p>
+  </div>
+  <div class="card-footer text-muted created_at">
+    By: <%= music.user.username %>
+    <%= format_datetime(music.created_at) %>
+  </div>
+</div>

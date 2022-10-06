@@ -1,0 +1,20 @@
+<%= turbo_frame_tag "music-form" do %>
+  <div class="row">
+    <div class="row music-container col-md-12">
+      <div class="form">
+        <%= form_with model: music do |f| %>
+        <div>
+          <%= f.text_field :name, class: 'form-control', placeholder: 'Name ...' %>
+        </div>
+        <div class="mt-2">
+          <%= f.rich_text_area :lyric, rows: '4', class: 'form-control', placeholder: 'Lyric ...'%>
+        </div>
+        <div class="mt-2">
+          <%= f.text_field :auth, rows: '4', class: 'form-control', placeholder: 'Author ...'%>
+        </div>
+        <%= f.submit "Post", class: 'btn btn-primary' %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+<% end %>
