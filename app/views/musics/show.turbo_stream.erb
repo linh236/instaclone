@@ -1,3 +1,9 @@
 <%= turbo_stream.update "lyric" do %>
-  <%=@music.lyric%>
+  <%=@music.lyric.html_safe%>
+<% end %>
+
+<%= turbo_stream.update "btn-actions" do %>
+  <%= link_to "Edit", music_path(@music), class: "music-action"%>
+  <%= link_to "Preview", music_path(@music), class: "music-action"%>
+  <%= link_to "Export", export_powerpoint_path(@music), data: {turbo_method: :post}, class: "music-action"%>
 <% end %>

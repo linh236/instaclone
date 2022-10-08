@@ -11,8 +11,10 @@ Rails.application.routes.draw do
   
   resources :musics, only: [:index, :new, :create, :edit, :update, :destroy, :show]
   
-  get 'powerpoint/create'
-  
+  resources :powerpoints
+
+  post 'create_powerpoint/:id', to: "powerpoints#create_powerpoint", as: "export_powerpoint"
+
   devise_for :users
   root "site#index"
 end

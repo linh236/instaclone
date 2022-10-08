@@ -26,6 +26,11 @@ class MusicsController < ApplicationController
   end
 
   def update
+    if @music.update(music_params)
+    
+    else
+      render_flash(:alert, full_messages(@music.errors.full_messages))
+    end
   end
 
   def destroy

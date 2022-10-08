@@ -4,8 +4,10 @@
   "dependencies": {
     "@hotwired/stimulus": "^3.1.0",
     "@hotwired/turbo-rails": "^7.2.0",
+    "@popperjs/core": "^2.11.6",
     "@rails/actiontext": "^7.0.4",
     "add": "^2.0.6",
+    "bootstrap": "^5.2.2",
     "esbuild": "^0.15.10",
     "jquery": "^3.6.1",
     "trix": "^2.0.0-beta.0",

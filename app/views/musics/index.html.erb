@@ -1,11 +1,14 @@
 <div class="row list-container">
   <div class="col-md-4 h-100 border">
+    <p>Name</p>
     <% @musics.each do |music|%>
       <%= render music %>
     <% end %>
   </div>
-  <div class="col-md-8 h-100 border">
+  <div class="col-md-8 h-100 border lyric-container">
     <p>Lyric</p>
     <div id="lyric"></div>
+    <div id="btn-actions">
+    </div>
   </div>
 </div>

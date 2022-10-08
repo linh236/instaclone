@@ -2,6 +2,30 @@
   min-height: auto;
   max-height: 900px;
   overflow: hidden;
+  height: 90vh;
+  .lyric-container {
+    position: relative;
+    #lyric {
+      max-height: 80vh;
+      overflow: hidden;
+      overflow-y: scroll;
+    }
+    #btn-actions {
+      position: absolute;
+      // bottom: 10px;
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      margin: 0 -12px;
+      gap: 30px;
+      .music-action {
+        border: 1px solid;
+        padding: 10px 30px;
+        border-radius: 10px;
+        text-decoration: none;
+      }
+    }
+  }
   .music-item {
     &.active {
       border: 1px solid blue;
