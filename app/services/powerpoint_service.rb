@@ -2,14 +2,15 @@ class PowerpointService < ApplicationService
 
   require 'powerpoint'
 
-  def initialize object
+  def initialize object, current_user
     @object = object
+    @current_user = current_user
   end
 
   def call
     @deck = Powerpoint::Presentation.new
     # Creating an introduction slide:
-    title = @object.name
+    title = @object.name.upcase
     subtitle = @object.auth
     @deck.add_intro title, subtitle
 
@@ -40,7 +41,12 @@ class PowerpointService < ApplicationService
 
     # Saving the pptx file to the current directory.
     # @deck.save("#{Rails.root}/public/powerpoints/#{args[:file_name] + '_' + DateTime.now.strftime('%Y_%m_%d_%H_%M_%S')}.pptx")
-    @deck.save("#{Rails.root}/public/powerpoints/#{replace_name}.pptx")
+    if @object.lyrics.first.present?
+      @deck.save("#{Rails.root}/public/powerpoints/#{replace_name}_#{@current_user.id}.pptx")
+    else
+      @deck.save("#{Rails.root}/public/powerpoints/#{replace_name}.pptx")
+    end
+    update_powerpoint_file
   end
 
   private
@@ -52,10 +58,21 @@ class PowerpointService < ApplicationService
     end
 
     def slides
-      @object.lyric.split('<br><br>')
+      if @object.lyrics.first.present?
+        @object.lyrics.first.lyric.split('<br><br>')
+      else
+        @object.lyric.split('<br><br>')
+      end
     end
 
     def remove_div_tag string
       string.gsub(/<div.*?>|<\/div>/, '')
+    end
+
+    def update_powerpoint_file
+      @object.update(powerpoint_file: "#{replace_name}.pptx")
+      if @object.lyrics.first.present?
+        @object.lyrics.first.update(powerpoint_file: "#{replace_name}_#{@current_user.id}.pptx")
+      end
     end
 end

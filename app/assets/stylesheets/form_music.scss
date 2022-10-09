@@ -1,0 +1,9 @@
+.music-container {
+    form {
+        #music_lyric {
+            max-height: 700px;
+            overflow: hidden;
+            overflow-y: scroll;
+        }
+    }
+}

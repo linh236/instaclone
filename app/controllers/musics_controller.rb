@@ -26,8 +26,8 @@ class MusicsController < ApplicationController
   end
 
   def update
-    if @music.update(music_params)
-    
+    lyric = @music.lyrics.find_or_initialize_by(user_id: current_user.id)
+    if lyric.update(lyric_params.merge(user_id: current_user.id))
     else
       render_flash(:alert, full_messages(@music.errors.full_messages))
     end
@@ -44,5 +44,9 @@ class MusicsController < ApplicationController
 
     def music_params
       params.require(:music).permit(:name, :lyric, :auth)
+    end
+
+    def lyric_params
+      params.require(:music).permit(:lyric)
     end
 end

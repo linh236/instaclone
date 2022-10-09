@@ -15,4 +15,14 @@ export default class extends Controller {
     .then(r => r.text())
     .then(html => Turbo.renderStreamMessage(html))
   }
+
+  download({params: {url}}) {
+    fetch(`${url}`, {
+      headers: {
+        Accept: "text/vnd.turbo-stream.html"
+      }
+    })
+    .then(r => r.text())
+    .then(html => Turbo.renderStreamMessage(html))
+  }
 }

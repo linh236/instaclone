@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_10_06_092100) do
+ActiveRecord::Schema[7.0].define(version: 2022_10_09_041124) do
   create_table "action_text_rich_texts", force: :cascade do |t|
     t.string "name", null: false
     t.text "body"
@@ -68,6 +68,17 @@ ActiveRecord::Schema[7.0].define(version: 2022_10_06_092100) do
     t.index ["user_id", "likeable_id", "likeable_type"], name: "index_likes_on_user_id_and_likeable_id_and_likeable_type", unique: true
   end
 
+  create_table "lyrics", force: :cascade do |t|
+    t.string "lyric"
+    t.integer "user_id", null: false
+    t.integer "music_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "powerpoint_file"
+    t.index ["music_id"], name: "index_lyrics_on_music_id"
+    t.index ["user_id"], name: "index_lyrics_on_user_id"
+  end
+
   create_table "musics", force: :cascade do |t|
     t.string "name"
     t.string "auth"
@@ -75,6 +86,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_10_06_092100) do
     t.datetime "updated_at", null: false
     t.integer "user_id", null: false
     t.text "lyric"
+    t.string "powerpoint_file"
     t.index ["user_id"], name: "index_musics_on_user_id"
   end
 
@@ -115,6 +127,8 @@ ActiveRecord::Schema[7.0].define(version: 2022_10_06_092100) do
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "comments", "posts"
   add_foreign_key "comments", "users"
+  add_foreign_key "lyrics", "musics"
+  add_foreign_key "lyrics", "users"
   add_foreign_key "musics", "users"
   add_foreign_key "posts", "users"
 end

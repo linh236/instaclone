@@ -27,5 +27,12 @@ $(document).ready(function() {
       $(`.filename-document-${id}`).html(filename[0].name);
     })
   })
+
+  $("#slide-resolte-contaniner").pptxToHtml({ 
+    pptxFileUrl: "/powerpoinsts/faded.pptx", 
+    slidesScale: "50%", 
+    slideMode: false, 
+    keyBoardShortCut: false 
+  }); 
 })  
 

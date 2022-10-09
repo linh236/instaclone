@@ -1,18 +1,34 @@
 <%= turbo_frame_tag "music-form" do %>
+  <%= link_to musics_path, class: "text-dark text-decoration-none mt-2" do %>
+    <%= image_tag "icons/back"%> 
+    Back
+  <% end %>
   <div class="row">
     <div class="row music-container col-md-12">
       <div class="form">
         <%= form_with model: music do |f| %>
-        <div>
-          <%= f.text_field :name, class: 'form-control', placeholder: 'Name ...' %>
+        <div class="row">
+          <div class="col-4">
+            <div class="mt-2">
+              <%= f.text_field :name, class: 'form-control', placeholder: 'Name ...' %>
+            </div>
+            <div class="mt-2">
+              <%= f.text_field :auth, rows: '4', class: 'form-control', placeholder: 'Author ...'%>
+            </div>          
+          </div>
+          <% if find_edit_lyric(@music.lyrics, current_user).present? %>
+            <div class="col-8 mt-2">
+              <%= f.rich_text_area :lyric, rows: '4', class: 'form-control', placeholder: 'Lyric ...', value: find_edit_lyric(@music.lyrics, current_user).lyric %>
+            </div>
+          <% else %>
+            <div class="col-8 mt-2">
+                <%= f.rich_text_area :lyric, rows: '4', class: 'form-control', placeholder: 'Lyric ...'%>
+            </div>
+          <% end %>
         </div>
-        <div class="mt-2">
-          <%= f.rich_text_area :lyric, rows: '4', class: 'form-control', placeholder: 'Lyric ...'%>
+        <div class="mt-2 text-center">
+          <%= f.submit "Post", class: 'btn btn-primary form-control' %>
         </div>
-        <div class="mt-2">
-          <%= f.text_field :auth, rows: '4', class: 'form-control', placeholder: 'Author ...'%>
-        </div>
-        <%= f.submit "Post", class: 'btn btn-primary' %>
         <% end %>
       </div>
     </div>

@@ -1,9 +1,13 @@
 <%= turbo_stream.update "lyric" do %>
-  <%=@music.lyric.html_safe%>
+  <% if find_edit_lyric(@music.lyrics, current_user).present? %>
+    <%= find_edit_lyric(@music.lyrics, current_user).lyric.html_safe %>
+  <% else %>
+    <%= @music.lyric.html_safe %>
+  <% end %>
 <% end %>
 
 <%= turbo_stream.update "btn-actions" do %>
-  <%= link_to "Edit", music_path(@music), class: "music-action"%>
-  <%= link_to "Preview", music_path(@music), class: "music-action"%>
-  <%= link_to "Export", export_powerpoint_path(@music), data: {turbo_method: :post}, class: "music-action"%>
+  <%= link_to "Edit", edit_music_path(@music), class: "music-action"%>
+  <%= link_to "Preview", export_powerpoint_path(@music), data: {turbo_method: :post}, class: "music-action"%>
+  <%= link_to "Export", download_path(@music), data: { turbo_method: :get }, target: "_blank", class: "music-action"%>
 <% end %>

@@ -10,4 +10,6 @@ class User < ApplicationRecord
   has_one :picture, as: :pictureable
   validates :username, presence: true
   has_many :musics
+  has_many :lyrics
+  has_many :user_music, through: :lyrics, source: :music
 end

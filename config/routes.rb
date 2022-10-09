@@ -14,6 +14,7 @@ Rails.application.routes.draw do
   resources :powerpoints
 
   post 'create_powerpoint/:id', to: "powerpoints#create_powerpoint", as: "export_powerpoint"
+  get 'download/:id', to: "powerpoints#download", as: "download"
 
   devise_for :users
   root "site#index"
