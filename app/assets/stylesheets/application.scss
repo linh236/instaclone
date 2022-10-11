@@ -26,6 +26,15 @@ p {
   cursor: pointer;
 }
 
+.modal {
+  .modal-dialog {
+    max-width: 900px;
+    &.view-pptx {
+      max-width: 1075px;
+    }
+  }
+}
+
 /* Post */
 // #posts {
 //   display: grid;

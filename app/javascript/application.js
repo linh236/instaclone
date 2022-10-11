@@ -28,11 +28,11 @@ $(document).ready(function() {
     })
   })
 
-  $("#slide-resolte-contaniner").pptxToHtml({ 
-    pptxFileUrl: "/powerpoinsts/faded.pptx", 
-    slidesScale: "50%", 
-    slideMode: false, 
-    keyBoardShortCut: false 
-  }); 
+  // $("#slide-resolte-contaniner").pptxToHtml({ 
+  //   pptxFileUrl: "/powerpoinsts/faded.pptx", 
+  //   slidesScale: "50%", 
+  //   slideMode: false, 
+  //   keyBoardShortCut: false 
+  // }); 
 })  
 

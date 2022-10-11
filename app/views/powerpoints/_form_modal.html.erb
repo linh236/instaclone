@@ -1,0 +1,15 @@
+<%= turbo_frame_tag :remote_modal, target: :_top do %>
+  <div class="modal fade" data-controller="modal">
+    <div class="modal-dialog view-pptx">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title"><%=music.name%></h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <iframe src="https://view.officeapps.live.com/op/embed.aspx?src=/powerpoints/<%=music.powerpoint_file%>" width='100%' height='600px' frameborder='0'></iframe>
+        </div>
+      </div>
+    </div>
+  </div>
+<% end %>

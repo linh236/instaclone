@@ -1,0 +1,5 @@
+<!-- <%= turbo_stream.update "flash", partial: "shared/flash", locals: { msg_type: :notice, message: "This music is updated!" } %> -->
+
+<%= turbo_stream.replace "remote_modal" do %>
+  <%= render partial: "powerpoints/form_modal", locals: {music: @music} %>
+<% end %>

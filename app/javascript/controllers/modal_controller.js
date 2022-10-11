@@ -7,10 +7,11 @@ export default class extends Controller {
       keyboard: false
     })
     this.modal.show()
-    console.log("Modal")
+    console.log("Connect")
   }
 
   disconnect() {
     this.modal.hide()
+    console.log("disconnect")
   }
 }
