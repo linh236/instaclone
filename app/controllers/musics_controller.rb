@@ -27,7 +27,7 @@ class MusicsController < ApplicationController
 
   def update
     lyric = @music.lyrics.find_or_initialize_by(user_id: current_user.id)
-    if lyric.update(lyric_params.merge(user_id: current_user.id))
+    if lyric.update(lyric_params.merge(user_id: current_user.id, powerpoint_file: "#{replace_name}.pptx"))
     else
       render_flash(:alert, full_messages(@music.errors.full_messages))
     end
@@ -48,5 +48,9 @@ class MusicsController < ApplicationController
 
     def lyric_params
       params.require(:music).permit(:lyric)
+    end
+
+    def replace_name
+      @music.name.downcase.gsub(' ', '_')
     end
 end

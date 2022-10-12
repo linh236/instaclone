@@ -41,7 +41,7 @@ class PowerpointService < ApplicationService
 
     # Saving the pptx file to the current directory.
     # @deck.save("#{Rails.root}/public/powerpoints/#{args[:file_name] + '_' + DateTime.now.strftime('%Y_%m_%d_%H_%M_%S')}.pptx")
-    if @object.lyrics.first.present?
+    if find_edit_lyric.present?
       @deck.save("#{Rails.root}/public/powerpoints/#{replace_name}_#{@current_user.id}.pptx")
     else
       @deck.save("#{Rails.root}/public/powerpoints/#{replace_name}.pptx")
@@ -58,8 +58,8 @@ class PowerpointService < ApplicationService
     end
 
     def slides
-      if @object.lyrics.first.present?
-        @object.lyrics.first.lyric.split('<br><br>')
+      if find_edit_lyric.present?
+        find_edit_lyric.lyric.split('<br><br>')
       else
         @object.lyric.split('<br><br>')
       end
@@ -71,8 +71,12 @@ class PowerpointService < ApplicationService
 
     def update_powerpoint_file
       @object.update(powerpoint_file: "#{replace_name}.pptx")
-      if @object.lyrics.first.present?
-        @object.lyrics.first.update(powerpoint_file: "#{replace_name}_#{@current_user.id}.pptx")
+      if find_edit_lyric.present?
+        find_edit_lyric.update(powerpoint_file: "#{replace_name}_#{@current_user.id}.pptx")
       end
+    end
+
+    def find_edit_lyric
+      @object.lyrics.find_by(user_id: @current_user.id)
     end
 end

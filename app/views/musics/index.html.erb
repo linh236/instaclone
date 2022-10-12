@@ -1,12 +1,16 @@
 <div class="row list-container">
   <div class="col-md-4 h-100 border">
     <p>Name</p>
+    <small class="text-danger">The songs that are not in the list you can add it </small>
+    <hr>
     <% @musics.each do |music|%>
       <%= render music %>
     <% end %>
   </div>
   <div class="col-md-8 h-100 border lyric-container">
     <p>Lyric</p>
+    <small class="text-danger">Each slide is spaced about 1 line apart</small>
+    <hr>
     <div id="lyric"></div>
     <div id="btn-actions">
     </div>
