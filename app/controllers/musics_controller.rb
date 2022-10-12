@@ -26,6 +26,13 @@ class MusicsController < ApplicationController
   end
 
   def update
+    if @music.user_id == current_user.id
+      if @music.update(music_params)
+
+      else
+        render_flash(:alert, full_messages(@music.errors.full_messages))
+      end
+    end
     lyric = @music.lyrics.find_or_initialize_by(user_id: current_user.id)
     if lyric.update(lyric_params.merge(user_id: current_user.id, powerpoint_file: "#{replace_name}.pptx"))
     else
