@@ -8,8 +8,13 @@
     <% end %>
   </div>
   <div class="col-md-8 h-100 border lyric-container">
-    <p>Lyric</p>
-    <small class="text-danger">Each slide is spaced about 1 line apart</small>
+    <div class="d-flex justify-content-between align-items-center">
+      <div>
+        <p>Lyric</p>
+        <small class="text-danger">Each slide is spaced about 1 line apart</small>
+      </div>
+      <%= link_to "+ New", new_music_path, class: "btn btn-primary" %>
+    </div>
     <hr>
     <div id="lyric"></div>
     <div id="btn-actions">
