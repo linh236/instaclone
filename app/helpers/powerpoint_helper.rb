@@ -1,5 +1,5 @@
 module PowerpointHelper
   def preview_path file 
-    "#{Rails.root}/public/powerpoints/#{file}"
+    "#{Rails.application.config.site_url}/powerpoints/#{file}"
   end
 end
